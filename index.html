@@ -73,10 +73,10 @@
                 <img class="img-beneficios" src="pictures/Screen Shot 2023-05-09 at 19.42.55.png" alt="foto">
                 <div class="text-ben">
                     <div class="logos-beneficios">
-                        <p>logo</p>
-                        <p>logo</p>
-                        <p>logo</p>
-                        <p>logo</p>
+                        <img src="pictures/WhatsApp Image 2023-05-25 at 12.35.26.jpeg" alt="logo">
+                        <img src="pictures/WhatsApp Image 2023-05-25 at 12.35.27.jpeg" alt="logo">
+                        <img src="pictures/WhatsApp Image 2023-05-25 at 12.35.27 (1).jpeg" alt="logo">
+                        <img src="pictures/WhatsApp Image 2023-05-25 at 12.35.27 (2).jpeg" alt="logo">
                     </div>
                     <div class="texto-beneficios">
                         <p>
@@ -142,11 +142,13 @@
 
     /* estilos para a navbar */
     .navbar {
+        position: sticky;
+        top: 0;
         display: flex; 
         flex-direction: row-reverse;
         justify-content: space-between;
         width: 100%;
-        background-color: #ff0000;
+        background-color: #821282e7;
         height: 100px;
         overflow: hidden;
     }
@@ -154,21 +156,18 @@
         display: flex;
         justify-content:space-around;
         align-items: center;
-        background-color: rgb(218, 156, 156);
         width:  310px ;
     }
     .caixinha2{
         display: flex;
         justify-content:space-around;
         align-items: center;
-        background-color: rgba(255, 169, 169, 0.623);
         width:  310px ;
     }
     .caixinha3{
         display: flex;
         justify-content:space-around;
         align-items: center;
-        background-color: rgb(241, 182, 182);
         width:  310px ;
     }
     /* estilos para a navbar */
@@ -216,6 +215,9 @@
     .linha1{
         font-size: 18px;
         background: #d83dff8a;
+        border-radius: 3%;
+        border: #9512AA;
+        box-shadow: inset;
     }
     .linha2{
         font-size: 18px;
@@ -239,7 +241,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;    
-        background-color: #00ff48;
+        background-color: #ff6709f1;
         height: 800px;
     }
     .h1-beneficios{
@@ -263,16 +265,14 @@
     .img-beneficios{
         justify-content: center;
         align-items: center; 
-        background: #ff00e6;
         height: 503px;
         width: 591px;
         display: flex; 
-        padding-right: 60px;
+        padding-right: 30px;
     }
     .text-ben{
         display: flex;
         align-items: center;
-        background: #81013d;
         height: 503px;
         width: 591px;
         font-size: 20px;
@@ -284,7 +284,6 @@
         align-items: center; 
         padding-right: 60px;
         height: 503px;
-        background-color: #92f6ff;
     }
     /*estilo para a beneficios*/
 /**********/
@@ -297,7 +296,7 @@
         align-items: center;
         height: 600px;
         width: 100%;
-        background-color:rgb(248, 211, 0);
+        background-color: #9512AA;
     }
     .nossos-clientes{
         display: flex;
@@ -306,7 +305,9 @@
         height: 80px;
         width: 600px;
         text-align: center;
-        background-color: #fff;
+        background-color: #FF6909;
+        color: #9512AA; 
+        font-size: 32px;
     }
     .imagens-clientes{
         display: flex;
@@ -314,7 +315,6 @@
         justify-content: space-around;
         align-items: center;
         width: 100%;
-        background-color: rgb(253, 0, 0);
     }
     .imagem1{
         display: flex;
@@ -322,7 +322,6 @@
         align-items: center;
         height: 320px;
         width: 320px;
-        background-color: #ff00d4 ;
     }
     .imagem2{
         display: flex;
@@ -330,15 +329,13 @@
         align-items: center;
         height: 320px;
         width: 320px;
-        background-color: #ff00d4 ;
     }
     .imagem3{
         display: flex;
         justify-content: center;
         align-items: center;
         height: 320px;
-        width: 320px;
-        background-color: #ff00d4 ;   
+        width: 320px;   
     }
     .nomes-clientes{
         display: flex;
@@ -346,7 +343,6 @@
         justify-content: space-around;
         align-items: center;
         width: 100%;
-        background-color: rgb(120, 223, 134);
     }
     .nomes1{
         display: flex;
@@ -354,7 +350,9 @@
         align-items: center;
         height: 40px;
         width: 320px;
-        background-color: #e100ff ;
+        background-color: #FF6909 ;
+        color: #9512AA;
+        font-size: 32px;
     }
     .nomes2{
         display: flex;
@@ -362,7 +360,9 @@
         align-items: center;
         height: 40px;
         width: 320px;
-        background-color: #003cff ;
+        background-color: #FF6909 ;
+        color: #9512AA;
+        font-size: 32px;
     }
     .nomes3{
         display: flex;
@@ -370,7 +370,9 @@
         align-items: center;
         height: 40px;
         width: 320px;
-        background-color: #eeff00 ;
+        background-color: #FF6909 ;
+        color: #9512AA;
+        font-size: 32px;
     }
      /*estilo para clientes*/
 
@@ -385,7 +387,19 @@
         width: 100%;
         height: 300px;
         font-size: 30px;
-        background-color: rgb(13, 153, 76);
+        background-color: rgb(255, 255, 255);
+    }
+    .instagram{
+        color: #9512AA;
+    }
+    .facebook{
+        color: #FF6909;
+    }
+    .linkedin{
+        color: #9512AA;
+    }
+    .youtube{
+        color: #FF6909;
     }
     /* estilos para o footer */
 </style>
