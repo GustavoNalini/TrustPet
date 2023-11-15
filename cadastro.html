@@ -19,17 +19,17 @@
         >
           <div class="endereco">
             <label for="cep">CEP: </label>
-            <input type="cep" name="cep" id="cep" placeholder="CEP" />
+            <input type="cep" name="cep" id="cep" />
             <label for="logradouro">Logradouro</label>
-            <input type="text" id="logradouro" />
+            <input type="text" id="logradouro" name="logradouro" />
             <label for="complemento">Complemento</label>
-            <input type="text" id="complemento" />
+            <input type="string" id="complemento" name="complemento" />
             <label for="bairro">Bairro</label>
-            <input type="text" id="bairro" />
+            <input type="text" id="bairro" name="bairro" />
             <label for="localidade">Localidade</label>
-            <input type="text" id="localidade" />
+            <input type="text" id="localidade" name="localidade" />
             <label for="uf">UF</label>
-            <input type="text" id="uf" />
+            <input type="text" id="uf" name="uf" />
           </div>
 
           <div class="dono">
@@ -40,44 +40,43 @@
               id="nome"
               pattern="[A-Za-z\s]+$"
               title="Digite apenas letras"
-              placeholder="Nome"
             />
 
             <label for="cpf">CPF: </label>
-            <input type="cpf" name="cpf" id="cpf" placeholder="CPF" />
+            <input type="cpf" name="cpf" id="cpf" />
 
             <label for="phone">Telefone: </label>
-            <input
-              type="tel"
-              name="telefone"
-              id="phone"
-              placeholder="Telefone"
-            />
+            <input type="tel" name="telefone" id="phone" />
 
             <label for="email">E-mail: </label>
-            <input type="email" name="email" id="email" placeholder="E-mail" />
+            <input type="email" name="email" id="email" />
           </div>
 
           <div class="pet">
             <label for="petName">Nome do Pet:</label>
-            <input type="text" id="petName" required />
+            <input type="text" id="petName" name="petName" />
 
             <label for="animalType">Tipo de Animal:</label>
-            <input type="text" id="animalType" required />
+            <input type="text" id="animalType" name="animalType" />
 
             <label for="petBreed">Raça do Pet:</label>
-            <input type="text" id="petBreed" required />
-
-            <label for="petPhoto">Foto do Pet:</label>
-            <input type="file" id="petPhoto" accept="image/*" required />
+            <input type="text" id="petBreed" name="petBreed" />
           </div>
           <input type="submit" value="Enviar" />
         </form>
         <a href="index.html " target="_blank"> home </a>
       </div>
     </div>
+    <div class="id-imagem" id="id"></div>
+    <div class="url-image" id="url"></div>
+    <div class="image-pet" id="image"></div>
   </body>
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("pictures/bgimagecadastro.jpeg");
+    }
     .container {
       display: flex;
       flex-direction: column;
@@ -120,6 +119,11 @@
     .pet {
       display: flex;
       flex-direction: column;
+    }
+    .id-image {
+    }
+    .url-image {
+      opacity: 0;
     }
   </style>
   <script>
@@ -164,11 +168,12 @@
       bairroInput.value = data.bairro || "";
       localidadeInput.value = data.localidade || "";
       ufInput.value = data.uf || "";
-      // Adicione aqui mais campos se necessário
     }
 
     //api excel
-
+    function mostrarAlerta() {
+      alert("Formulário enviado com sucesso!");
+    }
     const acionaSubmit = async (event) => {
       event.preventDefault();
 
@@ -177,6 +182,16 @@
       const telefone = document.querySelector("input[name=telefone]").value;
       const cpf = document.querySelector("input[name=cpf]").value;
       const cep = document.querySelector("input[name=cep]").value;
+      const complemento = document.querySelector(
+        "input[name=complemento]"
+      ).value;
+      const logradouro = document.querySelector("input[name=logradouro]").value;
+      const bairro = document.querySelector("input[name=bairro]").value;
+      const localidade = document.querySelector("input[name=localidade]").value;
+      const uf = document.querySelector("input[name=localidade]").value;
+      const petName = document.querySelector("input[name=petName]").value;
+      const animalType = document.querySelector("input[name=animalType]").value;
+      const petBreed = document.querySelector("input[name=petBreed]").value;
 
       try {
         const response = await fetch(
@@ -192,22 +207,60 @@
               telefone,
               cpf,
               cep,
+              logradouro,
+              complemento,
+              bairro,
+              localidade,
+              uf,
+              petName,
+              animalType,
+              petBreed,
             }),
           }
         );
 
         if (response.ok) {
-          // Lidar com a resposta se necessário
           console.log("Dados enviados com sucesso!");
+          mostrarAlerta();
         } else {
-          // Se houver algum problema no envio
           console.error("Erro ao enviar os dados.");
         }
       } catch (error) {
         console.error("Erro ao enviar os dados:", error);
       }
     };
-
     document.querySelector("form").addEventListener("submit", acionaSubmit);
+
+    // api cat
+
+    function ajax_get(url, callback) {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          console.log("responseText:" + xmlhttp.responseText);
+          try {
+            var data = JSON.parse(xmlhttp.responseText);
+          } catch (err) {
+            console.log(err.message + " in " + xmlhttp.responseText);
+            return;
+          }
+          callback(data);
+        }
+      };
+
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    }
+
+    ajax_get(
+      "https://api.thecatapi.com/v1/images/search?size=full",
+      function (data) {
+        document.getElementById("id").innerHTML = data[0]["id"];
+        document.getElementById("url").innerHTML = data[0]["url"];
+
+        var html = '<img src="' + data[0]["url"] + '">';
+        document.getElementById("image").innerHTML = html;
+      }
+    );
   </script>
 </html>
